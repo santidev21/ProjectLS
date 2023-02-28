@@ -1,0 +1,14 @@
+# Ignorar los archivos de configuración de Visual Studio
+.vs/
+*.sln
+*.suo
+
+# Ignorar los archivos binarios y de caché
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Ignorar los archivos de registro
+*.log
