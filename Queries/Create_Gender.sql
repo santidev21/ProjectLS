@@ -1,0 +1,21 @@
+USE [projectLS]
+GO
+
+/****** Object:  Table [dbo].[Gender]    Script Date: 2/28/2023 6:22:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Gender](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[GenderName] [varchar](20) NULL,
+ CONSTRAINT [PK_Gender] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
