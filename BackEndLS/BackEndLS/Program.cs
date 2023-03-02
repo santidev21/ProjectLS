@@ -1,11 +1,28 @@
+using BackEndLS.IRepositories;
+using BackEndLS.IServices;
+using BackEndLS.Persistence.Context;
+using BackEndLS.Repositories;
+using BackEndLS.Services;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IUserRepositories, UserRepositories>();
+
+builder.Services.AddDbContext<LSContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Conexion")));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//builder.Services.AddScoped<IUserServices, UserServices>();
 
 var app = builder.Build();
 
