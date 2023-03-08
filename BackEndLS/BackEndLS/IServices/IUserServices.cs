@@ -5,6 +5,10 @@ namespace BackEndLS.IServices
 {
     public interface IUserServices
     {
-        Users CreateUser(Users users);
+        string CreateUser(Users users);
+
+        bool ValidateUser(string username);
+
+        bool ValidateEmail(string email);
     }
 }
