@@ -20,8 +20,16 @@ namespace BackEndLS.Controllers
         [HttpPost("createUser")]
         public IActionResult CreateUser(Users users)
         {
-            _userServices.CreateUser(users);
-            return Ok(users);
+            try
+            {
+                string response = _userServices.CreateUser(users);
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Ha ocurrido un error en el sistema, contactese con soporte." });
+            }
+            
         }
 
         

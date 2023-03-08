@@ -1,0 +1,23 @@
+<div class="container-create-user">
+    <div class="img-container">
+
+    </div>
+
+    <div class="form-container">
+        <form [formGroup]="registroForm">
+            <div class="container-inputs">
+                <label>Email</label>
+                <input type="text" formControlName="email">
+                <label>User</label>
+                <input type="text" formControlName="userName">
+                <label>Password</label>
+                <input type="password" formControlName="password">
+                <label>Confirm password</label>
+                <input type="password" formControlName="confirmPassword">
+            </div>
+            <div class="container-buttons">
+                <button mat-raised-button color="accent" (click)="createUser()">Create user</button>
+            </div>
+        </form>
+    </div>
+</div>

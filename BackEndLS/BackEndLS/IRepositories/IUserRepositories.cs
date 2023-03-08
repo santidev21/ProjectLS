@@ -5,6 +5,9 @@ namespace BackEndLS.IRepositories
 {
     public interface IUserRepositories
     {
-        Users CreateUser(Users users);
+        void CreateUser(Users users);
+        bool ValidateUser(string username);
+
+        bool ValidateEmail(string email);
     }
 }
