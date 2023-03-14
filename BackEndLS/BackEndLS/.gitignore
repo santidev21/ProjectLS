@@ -2,6 +2,8 @@
 .vs/
 *.sln
 *.suo
+*.vsidx
+
 
 # Ignorar los archivos binarios y de caché
 bin/
@@ -12,3 +14,4 @@ obj/
 
 # Ignorar los archivos de registro
 *.log
+
