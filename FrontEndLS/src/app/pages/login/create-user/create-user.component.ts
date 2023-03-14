@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserServicesService } from 'src/app/services/user-services.service';
+import { CreateUserDetailComponent } from './create-user-detail/create-user-detail.component';
 
 
 @Component({
@@ -16,7 +18,8 @@ export class CreateUserComponent {
 
   constructor(private fb: UntypedFormBuilder,
               private router: Router,
-              private userService: UserServicesService) { 
+              private userService: UserServicesService,
+              public dialog: MatDialog) { 
 
     this.registroForm = this.fb.group({});
   }
@@ -44,7 +47,6 @@ export class CreateUserComponent {
         ]],
       }
     );
-    
   }
 
   
@@ -68,14 +70,20 @@ export class CreateUserComponent {
     forkJoin(obs).subscribe({
       next: response => {
         console.log(response)
+        this.nextRegister();
       },
       error: err => {
         console.log(err);
-        
       }
     });
+  }
 
-
+  nextRegister(){
+    const dialogRef = this.dialog.open(CreateUserDetailComponent, {
+      width: '40vw',
+      height: '65vh',
+      panelClass: 'dialog-register'
+    });
   }
 
 }
