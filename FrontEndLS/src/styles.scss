@@ -1,4 +1,152 @@
 /* You can add global styles to this file, and also import other style files */
-
+:root{
+    --primary: #fff;
+    --black: #000;
+    --gray: #dddfe2;
+    --red: #ff0000;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.mt-10{
+    margin-top: 10px !important;
+}
+
+.mt-20{
+    margin-top: 20px !important;
+}
+
+input:focus {
+    outline: none;
+}
+
+input{
+    height: 38px;
+    padding-left: 10px;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: var(--black);
+}
+
+.text-validation{
+    margin-top: 5px;
+    padding-left: 5px;
+    color: red;
+    // border: 1px solid red;
+    border-radius: 5px;
+    height: auto;
+    max-height: 70px;
+}
+
+.invalid-input{
+    border: 1px solid red !important;
+}
+/* LOGIN */
+.container-login{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100%;
+
+    .img-container{
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .form-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 60%;
+            width: 70%;
+            box-shadow: 0px 0px 24px 0px rgba(140,140,140,1);
+            border-radius: 5px;
+
+            .container-inputs{
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                
+
+                input{
+                    margin: 10px;
+                }
+            }
+            .container-buttons{
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+
+                .line{
+                    width: 100%;
+                    height: 1px;
+                    background-color: var(--gray);
+                }
+
+                a,p{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.dialog-register{
+    mat-dialog-container app-create-user .container-create-user{
+        height: 100%;
+        display: grid;
+        grid-template-rows: 5% 95%;
+
+        .logo-close {
+            display: flex;
+            justify-content: end;
+
+            mat-icon{
+                margin: 2px;
+                cursor: pointer;
+            }
+        }
+
+        .form-container{
+            height: 100%;
+
+            form{
+                height: 100%;
+                justify-content: center;
+                align-items: center;
+                justify-items: center;
+                display: grid;
+                grid-template-columns: 80%;
+                grid-template-rows: 85% 15%;
+
+                .container-inputs{
+                    display: flex;
+                    flex-direction: column;
+                    width: 80%;
+                    height: 100%;
+                    
+                }
+
+                .container-buttons{
+                    width: 80%;
+
+                    button{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        
+    }
+}

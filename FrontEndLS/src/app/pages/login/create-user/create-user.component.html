@@ -1,21 +1,32 @@
 <div class="container-create-user">
-    <div class="img-container">
-
+    <div class="logo-close">
+        <mat-icon>close</mat-icon>
     </div>
+    
 
     <div class="form-container">
         <form [formGroup]="registroForm">
             <div class="container-inputs">
-                <label>Email</label>
-                <input type="text" formControlName="email">
-                <label>User</label>
-                <input type="text" formControlName="userName">
-                <label>Password</label>
-                <input type="password" formControlName="password">
-                <label>Confirm password</label>
-                <input type="password" formControlName="confirmPassword">
+                <h1>Register</h1>
+                
+                <input type="text" formControlName="email" placeholder="Email" [ngClass]="{'invalid-input': (registroForm.get('email')?.touched && registroForm.get('email')?.errors?.['required'] || registroForm.get('email')?.touched && registroForm.get('email')?.errors?.['email'])}">
+                <div *ngIf="registroForm.get('email')?.touched && registroForm.get('email')?.errors?.['required']" class="text-validation">The email is required</div>
+                <div *ngIf="registroForm.get('email')?.touched && registroForm.get('email')?.errors?.['email']" class="text-validation">Please enter a valid email.</div>
+
+                <input type="text" formControlName="userName" placeholder="User name" class="mt-20" [ngClass]="{'invalid-input': registroForm.get('userName')?.touched && registroForm.get('userName')?.errors?.['required']}">
+                <div *ngIf="registroForm.get('userName')?.touched && registroForm.get('userName')?.errors?.['required']" class="text-validation">The username is required</div>
+
+                <input type="password" formControlName="password" placeholder="Password" class="mt-20" [ngClass]="{'invalid-input': (registroForm.get('password')?.touched && registroForm.get('password')?.errors?.['required'] || registroForm.get('password')?.touched && registroForm.get('password')?.errors?.['minlength'] || registroForm.get('password')?.touched && registroForm.get('password')?.errors?.['pattern'])}">
+                <div *ngIf="registroForm.get('password')?.touched && registroForm.get('password')?.errors?.['required']" class="text-validation">The password is required</div>
+                <div *ngIf="registroForm.get('password')?.touched && registroForm.get('password')?.errors?.['minlength']" class="text-validation">The password must have at least 8 characters</div>
+                <div *ngIf="registroForm.get('password')?.touched && registroForm.get('password')?.errors?.['pattern']" class="text-validation">The password must include at least one uppercase letter, one lowercase letter, one number, and one special character</div>
+
+                <input type="password" formControlName="confirmPassword" placeholder="confirmPassword" class="mt-20" [ngClass]="{'invalid-input': (registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.errors?.['required'] || registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.errors?.['minlength'] || registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.errors?.['pattern'])}">
+                <div *ngIf="registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.errors?.['required']" class="text-validation">The password is required</div>
+                <div *ngIf="registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.errors?.['minlength']" class="text-validation">The password must have at least 8 characters</div>
+                <div *ngIf="registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.errors?.['pattern']" class="text-validation">The password must include at least one uppercase letter, one lowercase letter, one number, and one special character</div>
             </div>
-            <div class="container-buttons">
+            <div class="container-buttons mt-10">
                 <button mat-raised-button color="accent" (click)="createUser()">Create user</button>
             </div>
         </form>

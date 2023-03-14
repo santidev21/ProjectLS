@@ -1,19 +1,24 @@
-<div class="container">
+<div class="container-login">
     <div class="img-container">
-
+        <img src="../../../assets/login.jpg" alt="fotico de un perrito con una rosa mela">
     </div>
-
+    
     <div class="form-container">
         <form >
+            <div class="title">
+                <h1>Project LS</h1>
+            </div>
             <div class="container-inputs">
-                <label>User</label>
-                <input type="text">
-                <label>Password</label>
-                <input type="password">
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
             </div>
             <div class="container-buttons">
                 <button mat-raised-button color="accent">Login</button>
-                <button mat-flat-button color="primary" [routerLink]="['/register']">Create user</button>
+                <a href="" class="mt-10">Forgot password?</a>
+                <span class="line mt-10"></span>
+                <p class="mt-10">Don't have an account yet?</p>
+                <!-- <button mat-flat-button color="primary" [routerLink]="['/register']">Register</button> -->
+                <button mat-flat-button color="primary" (click)="register()">Register</button>
             </div>
         </form>
     </div>
