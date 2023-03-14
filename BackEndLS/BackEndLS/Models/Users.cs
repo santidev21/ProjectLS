@@ -5,7 +5,7 @@ namespace BackEndLS.Models
 {
     public class Users
     {
-        [Required] // Data anotations para requerir el valor
+        [Required]
         [Key]
         public int Id { get; set; }
         [Required]

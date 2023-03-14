@@ -2,6 +2,7 @@
 .vs/
 *.sln
 *.suo
+*.vsidx
 
 # Ignorar los archivos binarios y de caché
 bin/

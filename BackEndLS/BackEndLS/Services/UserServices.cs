@@ -43,11 +43,13 @@ namespace BackEndLS.Services
             {
                 return "";
             }
-
-
-            
-
         }
+
+        public string CreateUserDetail()
+        {
+            return "";
+        }
+
         public bool ValidateUser(string username)
         {
             return  _userRepositories.ValidateUser(username);
@@ -57,5 +59,7 @@ namespace BackEndLS.Services
         {
             return _userRepositories.ValidateEmail(email);
         }
+
+
     }
 }
