@@ -3,7 +3,10 @@
 *.sln
 *.suo
 *.vsidx
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/main
 
 # Ignorar los archivos binarios y de caché
 bin/

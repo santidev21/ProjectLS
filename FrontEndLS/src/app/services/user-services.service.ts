@@ -17,6 +17,11 @@ export class UserServicesService {
   public registerUser(request: User): Observable<any> {
     const url = `${this.appLocalHost}${this.userAppUrl}`;
     return this.http.post<any>(url, request);
+  }
+
+  public getPetTypes(): Observable<any> {
+    const url = `${this.appLocalHost}$'User/petTypes'`;
+    return this.http.get<any>(url);
   }  
 
 
