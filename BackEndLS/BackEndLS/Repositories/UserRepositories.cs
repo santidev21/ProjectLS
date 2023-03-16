@@ -28,5 +28,15 @@ namespace BackEndLS.Repositories
         {
             return _context.User.Where(x => x.Email == email).ToList().Count() > 0 ? false : true;
         }
+
+        // Methods for the register
+        public List<PetType> GetPetTypes() 
+        {
+            return _context.PetType.ToList();
+        }
+        public List<Race> GetRaces(int PetTypeId)
+        {
+            return _context.Race.Where(x => x.PetTypeId == PetTypeId).ToList();
+        }
     }
 }

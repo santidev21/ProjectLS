@@ -7,6 +7,10 @@ namespace BackEndLS.IServices
     {
         string CreateUser(Users users);
 
+        //Methods for the register
+        List<PetType> GetPetTypes();
+        List<Race> GetRaces(int PetTypeId);
+
         bool ValidateUser(string username);
 
         bool ValidateEmail(string email);
