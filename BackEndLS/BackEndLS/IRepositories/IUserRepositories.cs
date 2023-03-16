@@ -8,6 +8,9 @@ namespace BackEndLS.IRepositories
         void CreateUser(Users users);
         bool ValidateUser(string username);
 
-        bool ValidateEmail(string email);
+        bool ValidateEmail(string email); 
+        // Methods for the register
+        List<PetType> GetPetTypes();
+        List<Race> GetRaces(int PetTypeId);
     }
 }
