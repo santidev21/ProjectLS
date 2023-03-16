@@ -27,11 +27,38 @@ namespace BackEndLS.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "Ha ocurrido un error en el sistema, contactese con soporte." });
+                return BadRequest(new { message = "A system error has occurred, contact support." });
             }
             
         }
 
+        // Get the pet type list
+        [HttpGet("petTypes")]
+        public IActionResult getPetTypes() 
+        {
+            try
+            {
+                List<PetType> response = _userServices.GetPetTypes();
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while querying for the type of pet, contact support." });
+            }
+        }
+        [HttpGet("race/{PetTypeId}")]
+        public IActionResult getRaces(int PetTypeId)
+        {
+            try
+            {
+                List<Race> response = _userServices.GetRaces(PetTypeId);
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while querying for the race, contact support." });
+            }
+        }
         
     }
 }

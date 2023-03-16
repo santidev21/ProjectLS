@@ -42,10 +42,7 @@ namespace BackEndLS.Services
             else
             {
                 return "";
-            }
-
-
-            
+            }            
 
         }
         public bool ValidateUser(string username)
@@ -56,6 +53,16 @@ namespace BackEndLS.Services
         public bool ValidateEmail(string email)
         {
             return _userRepositories.ValidateEmail(email);
+        }
+
+        // Methods for the register
+        public List<PetType> GetPetTypes() 
+        { 
+            return _userRepositories.GetPetTypes();
+        }
+        public List<Race> GetRaces(int PetTypeId) 
+        {
+            return _userRepositories.GetRaces(PetTypeId);
         }
     }
 }
