@@ -31,18 +31,22 @@ export class CreateUserComponent {
   initForm(){
     this.registroForm = this.fb.group(
       {
-        email: ['', [Validators.required, Validators.email]],
-        userName: ['', Validators.required],
+        email: ['', [
+          // Validators.required, Validators.email
+        ]],
+        userName: ['', [
+          // Validators.required
+        ]],
         password: ['', [
-            Validators.required,
-            Validators.minLength(8),
-            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
+            // Validators.required,
+            // Validators.minLength(8),
+            // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
           ]
         ],
         confirmPassword: ['', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
+          // Validators.required,
+          // Validators.minLength(8),
+          // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
 
         ]],
       }
@@ -64,18 +68,20 @@ export class CreateUserComponent {
     }
 
 
-    let obs: Observable<any>[] = [];
-    obs.push(this.userService.registerUser(userRegister));
+    // let obs: Observable<any>[] = [];
+    // obs.push(this.userService.registerUser(userRegister));
 
-    forkJoin(obs).subscribe({
-      next: response => {
-        console.log(response)
-        this.nextRegister();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+    // forkJoin(obs).subscribe({
+    //   next: response => {
+    //     console.log(response)
+    //     this.nextRegister();
+    //   },
+    //   error: err => {
+    //     console.log(err);
+    //   }
+    // });
+
+    this.nextRegister();
   }
 
   nextRegister(){
