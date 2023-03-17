@@ -42,12 +42,8 @@ namespace BackEndLS.Services
             else
             {
                 return "";
-<<<<<<< HEAD
-            }
-=======
             }            
 
->>>>>>> origin/main
         }
 
         public string CreateUserDetail()
@@ -65,9 +61,6 @@ namespace BackEndLS.Services
             return _userRepositories.ValidateEmail(email);
         }
 
-<<<<<<< HEAD
-
-=======
         // Methods for the register
         public List<PetType> GetPetTypes() 
         { 
@@ -77,6 +70,5 @@ namespace BackEndLS.Services
         {
             return _userRepositories.GetRaces(PetTypeId);
         }
->>>>>>> origin/main
     }
 }
