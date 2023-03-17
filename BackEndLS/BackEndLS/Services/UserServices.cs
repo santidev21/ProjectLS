@@ -61,7 +61,7 @@ namespace BackEndLS.Services
             return _userRepositories.ValidateEmail(email);
         }
 
-        // Methods for the register
+        // Methods for the register x
         public List<PetType> GetPetTypes() 
         { 
             return _userRepositories.GetPetTypes();
