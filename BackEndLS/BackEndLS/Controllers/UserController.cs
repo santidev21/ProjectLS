@@ -19,7 +19,7 @@ namespace BackEndLS.Controllers
 
         [HttpPost("createUser")]
         public IActionResult CreateUser(Users users)
-        {
+        { 
             try
             {
                 string response = _userServices.CreateUser(users);
@@ -32,7 +32,6 @@ namespace BackEndLS.Controllers
             
         }
 
-        // Get the pet type list
         [HttpGet("petTypes")]
         public IActionResult getPetTypes() 
         {
