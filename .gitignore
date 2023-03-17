@@ -2,6 +2,7 @@
 
 # Compiled output
 *.suo
+*.dtbcache.v2
 /dist
 /tmp
 /out-tsc
