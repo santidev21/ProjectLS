@@ -10,7 +10,8 @@ namespace BackEndLS.IServices
         //Methods for the register
         List<PetType> GetPetTypes();
         List<Race> GetRaces(int PetTypeId);
-
+        List<Gender> GetGenders();
+        List<UserDetails> GetUserDetails(int userId);
         bool ValidateUser(string username);
 
         bool ValidateEmail(string email);

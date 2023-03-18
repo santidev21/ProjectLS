@@ -70,5 +70,13 @@ namespace BackEndLS.Services
         {
             return _userRepositories.GetRaces(PetTypeId);
         }
+        public List<Gender> GetGenders()
+        {
+            return _userRepositories.GetGenders();
+        }
+        public List<UserDetails> GetUserDetails(int userId)
+        {
+            return _userRepositories.GetUserDetails(userId);
+        }
     }
 }

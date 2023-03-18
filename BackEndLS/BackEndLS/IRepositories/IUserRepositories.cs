@@ -12,5 +12,7 @@ namespace BackEndLS.IRepositories
         // Methods for the register
         List<PetType> GetPetTypes();
         List<Race> GetRaces(int PetTypeId);
+        List<Gender> GetGenders();
+        List<UserDetails> GetUserDetails(int UserId);
     }
 }
