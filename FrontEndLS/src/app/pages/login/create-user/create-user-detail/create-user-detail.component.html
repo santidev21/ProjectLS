@@ -1,23 +1,23 @@
 <div class="container-user-detail">
     <div class="container-type">
         <span>Select of pet type</span>
-        <select>
-            <option>Perro</option>
-            <option>Gato</option>
+        <select [(ngModel)]="selectedPetTypeId" (ngModelChange)="onPetTypeChange()">
+            <option>-</option>
+            <option *ngFor="let pet of PetTypes" [value]="pet.id">{{pet.petTypeName}}</option>
         </select>
     </div>
     <div class="container-gender">
         <span>Select gender</span>
-        <select>
-            <option>Male</option>
-            <option>Female</option>
+        <select [(ngModel)]="selectedGenderId" (ngModelChange)="onGenderChange()">
+            <option [value]="'-'">-</option>
+            <option *ngFor="let gender of Genders" [value]="gender.id">{{gender.genderName}}</option>
         </select>
     </div>
     <div class="container-race">
         <span>Select race</span>
-        <select>
-            <option>Race 1</option>
-            <option>Race 2</option>
+        <select [(ngModel)]="selectedRaceId" (ngModelChange)="onRaceChange()">
+            <option [value]="'-'">-</option>
+            <option *ngFor="let race of Races" [value]="race.id">{{race.raceName}}</option>
         </select>
     </div>
     <div class="container-load-pic">
