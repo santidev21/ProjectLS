@@ -30,15 +30,46 @@ namespace BackEndLS.Repositories
         }
 
         // Methods for the register
-        public List<PetType> GetPetTypes() 
+        public Response<List<PetType>> GetPetTypes() 
         {
-            return _context.PetType.ToList();
+            Response<List<PetType>> response = new Response<List<PetType>>();
+
+            List<PetType> petTypes = _context.PetType.ToList();
+
+            response.Success = true;
+            response.Value = petTypes;
+            response.Message = "Lista de tipos de mascotas obtenida correctamente";
+
+
+            return response;
         }
-        public List<Race> GetRaces(int PetTypeId)
+        public Response<List<Race>> GetRaces(int PetTypeId)
         {
-            return _context.Race.Where(x => x.PetTypeId == PetTypeId).ToList();
+            Response<List<Race>> response = new Response<List<Race>>();
+
+            List<Race> petTypes = _context.Race.Where(x => x.PetTypeId == PetTypeId).ToList();
+
+            response.Success = true;
+            response.Value = petTypes;
+            response.Message = "Lista de razas obtenidas correctamente";
+
+            return response;
+
         }
-        public List<Gender> GetGenders() { return _context.Gender.ToList(); }
+
+        public Response<List<Gender>> GetGenders() {
+
+            Response<List<Gender>> response = new Response<List<Gender>>();
+
+            List<Gender> petTypes = _context.Gender.ToList();
+
+            response.Success = true;
+            response.Value = petTypes;
+            response.Message = "Lista de generos obtenidos correctamente";
+
+            return response;
+        }
+
         public List<UserDetails> GetUserDetails(int UserId) { return _context.UserDetails.Where(x => x.UserId == UserId).ToList(); }
     }
 }

@@ -36,23 +36,31 @@ namespace BackEndLS.Controllers
         [HttpGet("petTypes")]
         public IActionResult getPetTypes() 
         {
+            Response<List<PetType>> response = new Response<List<PetType>>();
             try
             {
-                List<PetType> response = _userServices.GetPetTypes();
-                return Ok(new { message = response });
+                response = _userServices.GetPetTypes();
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while querying for the type of pet, contact support." });
+
+                response.Success = false;
+                response.Message = ex.Message;
+                response.Value = null;
+
+                return BadRequest(response);
             }
         }
         [HttpGet("race/{PetTypeId}")]
         public IActionResult getRaces(int PetTypeId)
         {
+            Response<List<Race>> response = new Response<List<Race>>();
+
             try
             {
-                List<Race> response = _userServices.GetRaces(PetTypeId);
-                return Ok(new { message = response });
+                response = _userServices.GetRaces(PetTypeId);
+                return Ok(response);
             }
             catch (Exception ex)
             {
@@ -62,10 +70,12 @@ namespace BackEndLS.Controllers
         [HttpGet("gender")]
         public IActionResult getGenders()
         {
+            Response<List<Gender>> response = new Response<List<Gender>>();
+
             try
             {
-                List<Gender> response = _userServices.GetGenders();
-                return Ok(new { message = response });
+                response = _userServices.GetGenders();
+                return Ok(response);
             }
             catch (Exception ex)
             {

@@ -62,15 +62,15 @@ namespace BackEndLS.Services
         }
 
         // Methods for the register x
-        public List<PetType> GetPetTypes() 
+        public Response<List<PetType>> GetPetTypes() 
         { 
             return _userRepositories.GetPetTypes();
         }
-        public List<Race> GetRaces(int PetTypeId) 
+        public Response<List<Race>> GetRaces(int PetTypeId) 
         {
             return _userRepositories.GetRaces(PetTypeId);
         }
-        public List<Gender> GetGenders()
+        public Response<List<Gender>> GetGenders()
         {
             return _userRepositories.GetGenders();
         }
