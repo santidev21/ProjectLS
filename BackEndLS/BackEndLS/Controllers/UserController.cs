@@ -2,6 +2,7 @@
 using BackEndLS.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace BackEndLS.Controllers
 {
@@ -58,6 +59,32 @@ namespace BackEndLS.Controllers
                 return BadRequest(new { message = "A system error occurred while querying for the race, contact support." });
             }
         }
-        
+        [HttpGet("gender")]
+        public IActionResult getGenders()
+        {
+            try
+            {
+                List<Gender> response = _userServices.GetGenders();
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while querying for the gender list, contact support." });
+            }
+        }
+        [HttpGet("userDetails/{userId}")]
+        public IActionResult getUserDetails(int userId)
+        {
+            try
+            {
+                List <UserDetails> response = _userServices.GetUserDetails(userId);
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while querying for the gender list, contact support." });
+            }
+        }
+
     }
 }

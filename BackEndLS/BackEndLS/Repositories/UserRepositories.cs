@@ -38,5 +38,7 @@ namespace BackEndLS.Repositories
         {
             return _context.Race.Where(x => x.PetTypeId == PetTypeId).ToList();
         }
+        public List<Gender> GetGenders() { return _context.Gender.ToList(); }
+        public List<UserDetails> GetUserDetails(int UserId) { return _context.UserDetails.Where(x => x.UserId == UserId).ToList(); }
     }
 }
