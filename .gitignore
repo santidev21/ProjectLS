@@ -3,6 +3,7 @@
 # Compiled output
 *.suo
 *.dtbcache.v2
+*.futdcache.v1
 /dist
 /tmp
 /out-tsc
