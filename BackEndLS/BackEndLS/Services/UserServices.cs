@@ -62,21 +62,13 @@ namespace BackEndLS.Services
         }
 
         // Methods for the register x
-        public Response<List<PetType>> GetPetTypes() 
-        { 
-            return _userRepositories.GetPetTypes();
-        }
-        public Response<List<Race>> GetRaces(int PetTypeId) 
-        {
-            return _userRepositories.GetRaces(PetTypeId);
-        }
-        public Response<List<Gender>> GetGenders()
-        {
-            return _userRepositories.GetGenders();
-        }
-        public List<UserDetails> GetUserDetails(int userId)
-        {
-            return _userRepositories.GetUserDetails(userId);
-        }
+        public Response<List<PetType>> GetPetTypes() { return _userRepositories.GetPetTypes(); }
+        public Response<List<Race>> GetRaces(int PetTypeId) { return _userRepositories.GetRaces(PetTypeId); }
+        public Response<List<Gender>> GetGenders() { return _userRepositories.GetGenders(); }
+        public List<UserDetails> GetUserDetails(int userId) { return _userRepositories.GetUserDetails(userId); }
+        public Response<UserDetails> SetUserDetail(UserDetails Detail) { return _userRepositories.SetUserDetail(Detail);}
+        public Response<UserProfilePic> GetUserProfilePic(int UserId) { return _userRepositories.GetUserProfilePic(UserId); }
+        public Response<UserProfilePic> SetUserProfilePic(UserProfilePic ProfilePic) { return _userRepositories.SetUserProfilePic(ProfilePic); }
+        public Response<UserProfilePic> updateProfilePic(UserProfilePic ProfilePic) { return _userRepositories.updateProfilePic(ProfilePic); }
     }
 }

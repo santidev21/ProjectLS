@@ -38,7 +38,7 @@ namespace BackEndLS.Repositories
 
             response.Success = true;
             response.Value = petTypes;
-            response.Message = "Lista de tipos de mascotas obtenida correctamente";
+            response.Message = "List of pet types obtained successfully";
 
 
             return response;
@@ -51,7 +51,7 @@ namespace BackEndLS.Repositories
 
             response.Success = true;
             response.Value = petTypes;
-            response.Message = "Lista de razas obtenidas correctamente";
+            response.Message = "List of successfully obtained races";
 
             return response;
 
@@ -65,11 +65,93 @@ namespace BackEndLS.Repositories
 
             response.Success = true;
             response.Value = petTypes;
-            response.Message = "Lista de generos obtenidos correctamente";
+            response.Message = "List of genders obtained successfully";
 
             return response;
         }
 
         public List<UserDetails> GetUserDetails(int UserId) { return _context.UserDetails.Where(x => x.UserId == UserId).ToList(); }
+        public Response<UserDetails> SetUserDetail(UserDetails Detail)
+        {
+            Response<UserDetails> response = new Response<UserDetails>();
+            try
+            {
+                _context.Add(Detail);
+                _context.SaveChanges();
+
+                response.Success = true;
+                response.Value = Detail;
+                response.Message = "Details saved successfully";
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                response.Success = false;
+                response.Value = Detail;
+                response.Message = "Error saving user detail successfully";
+                return response;
+            }           
+        }
+        public Response<UserProfilePic> GetUserProfilePic(int UserId) 
+        {
+            Response<UserProfilePic> response = new Response<UserProfilePic>();
+
+            UserProfilePic UserPic= _context.UserProfilePic.Where(x => x.UserId == UserId).FirstOrDefault();
+            if (UserPic != null)
+            {
+                response.Success = true;
+                response.Message = "User pic obtained successfully";
+            }
+            else
+            {
+                response.Success = false;
+                response.Message = "Error getting user image";
+            }
+            response.Value = UserPic;
+            return response;
+        }
+        public Response<UserProfilePic> SetUserProfilePic(UserProfilePic ProfilePic)
+        {
+            Response<UserProfilePic> response = new Response<UserProfilePic>();
+            try
+            {
+                _context.Add(ProfilePic);
+                _context.SaveChanges();
+
+                response.Success = true;
+                response.Message = "User profile picture added succesfull!";
+                response.Value = ProfilePic;
+                return response;
+            }
+            catch (Exception)
+            {
+                response.Success = false;
+                response.Message = "Error updating the user profile picture.";
+                response.Value = ProfilePic;
+                return response;
+            }
+        }
+        public Response<UserProfilePic> updateProfilePic(UserProfilePic ProfilePic)
+        {
+            Response<UserProfilePic> response = new Response<UserProfilePic>();
+            try
+            {
+                _context.Update(ProfilePic);
+                _context.SaveChanges();
+
+                response.Success = true;
+                response.Message = "User profile picture updated succesfull!";
+                response.Value = ProfilePic;
+                return response;
+            }
+            catch (Exception)
+            {
+                response.Success = false;
+                response.Message = "Error updating the user profile picture.";
+                response.Value = ProfilePic;
+                return response;
+            }
+        }
     }
 }
