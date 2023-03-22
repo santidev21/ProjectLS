@@ -10,6 +10,7 @@ import { CreateUserComponent } from './pages/login/create-user/create-user.compo
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { CreateUserDetailComponent } from './pages/login/create-user/create-user-detail/create-user-detail.component';
+import { SelectCustomComponent } from './shared/select-custom/select-custom.component';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { CreateUserDetailComponent } from './pages/login/create-user/create-user
     AppComponent,
     LoginComponent,
     CreateUserComponent,
-    CreateUserDetailComponent
+    CreateUserDetailComponent,
+    SelectCustomComponent
+
   ],
   imports: [
     BrowserModule,
