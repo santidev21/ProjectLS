@@ -92,9 +92,60 @@ namespace BackEndLS.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while querying for the gender list, contact support." });
+                return BadRequest(new { message = "A system error occurred while querying for the user details, contact support." });
             }
         }
-
+        [HttpPost("userDetail")]
+        public IActionResult setUserDetail(UserDetails Detail)
+        {
+            try
+            {
+                Response<UserDetails> response = _userServices.SetUserDetail(Detail);
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while saving user detail, contact support." });
+            }
+        }
+        [HttpGet("userProfilePic/{userId}")]
+        public IActionResult getUserProfilePic(int userId)
+        {
+            try
+            {
+                Response<UserProfilePic> response = _userServices.GetUserProfilePic(userId);
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while saving user profile pic, contact support." });
+            }
+        }
+        [HttpPost("userProfilePic")]
+        public IActionResult setUserProfilePic(UserProfilePic ProfilePic)
+        {
+            try
+            {
+                Response<UserProfilePic> response = _userServices.SetUserProfilePic(ProfilePic);
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while saving user profile pic, contact support." });
+            }
+        }
+        [HttpPut("userProfilePic")]
+        public IActionResult updateUserProfilePic(UserProfilePic ProfilePic)
+        {
+            try
+            {
+                Response<UserProfilePic> response = _userServices.updateProfilePic(ProfilePic);
+                return Ok(new { message = response });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "A system error occurred while updating user profile pic, contact support." });
+            }
+        }
     }
 }
