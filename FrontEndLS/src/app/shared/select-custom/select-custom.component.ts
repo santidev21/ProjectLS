@@ -39,10 +39,6 @@ export class SelectCustomComponent implements OnChanges {
       this.selected.emit(selectedOption);
       this.toggleOptions();
     }
-  
-
   }
-
-
 
 }
