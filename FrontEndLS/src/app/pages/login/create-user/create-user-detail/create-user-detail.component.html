@@ -5,40 +5,30 @@
         <div class="img-welcome">
             <img src="../../../../../assets/img_default.png" alt="">
         </div>
-    </div>
 
-    <div class="container-selects">
-        <div class="selects-label container-type">
-            <span>Select of pet type</span>
-            <select [(ngModel)]="selectedPetTypeId" (ngModelChange)="onPetTypeChange2()" class="select select-pet-type">
-                <option>-</option>
-                <option *ngFor="let pet of PetTypes" [value]="pet.id">{{pet.petTypeName}}</option>
-            </select>
-
-            <app-select-custom [options]="PetTypesSelect" (selected)="onPetTypeChange($event)"></app-select-custom>
-        </div>
-        <div class="selects-label container-gender">
-            <span>Select gender</span>
-            <select [(ngModel)]="selectedGenderId" (ngModelChange)="onGenderChange()">
-                <option [value]="'-'">-</option>
-                <option *ngFor="let gender of Genders" [value]="gender.id">{{gender.genderName}}</option>
-            </select>
-        </div>
-        <div class="selects-label container-race">
-            <span>Select race</span>
-            <select [(ngModel)]="selectedRaceId" (ngModelChange)="onRaceChange()">
-                <option [value]="'-'">-</option>
-                <option *ngFor="let race of Races" [value]="race.id">{{race.raceName}}</option>
-            </select>
-        </div>
         <div class="selects-label container-load-pic">
             <span>Load a pic</span>
             <input type="file" accept=".jpg, .jpeg, .png">
         </div>
     </div>
 
+    <div class="container-selects">
+        <div class="selects-label container-type">
+            
+            <app-select-custom [options]="PetTypesSelect" (selected)="onPetTypeChange($event)" class="select-pet-type"></app-select-custom>
+
+        </div>
+        <div class="selects-label container-gender">
+            <app-select-custom [options]="GendersSelect" (selected)="onGenderChange($event)" class="select-gender"></app-select-custom>
+        </div>
+        <div class="selects-label container-race">
+            <app-select-custom [options]="RacesSelect" (selected)="onRaceChange($event)" class="select-race"></app-select-custom>
+        </div>
+        
+    </div>
+
     <div class="container-button">
-        <button>Terminar registro</button>
+        <button class="button-blue">Terminar registro</button>
     </div>
     
 </div>
