@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { forkJoin, Observable } from 'rxjs';
 import { Genders } from 'src/app/models/Gender';
@@ -13,6 +13,7 @@ import { UserServicesService } from 'src/app/services/user-services.service';
 })
 
 export class CreateUserDetailComponent {
+  @ViewChild('fileInput') fileInput: ElementRef;
 
   PetTypesSelect: selectCustom = {};
   GendersSelect: selectCustom = {};
@@ -30,6 +31,8 @@ export class CreateUserDetailComponent {
   selectedPetTypeValue: string = '';
   selectedGenderValue: string = '';
   selectedRaceValue: string = '';
+
+  defaultPic: string = '../../../../../assets/img_default.png';
 
   constructor(private router: Router,
               private userService: UserServicesService
@@ -67,6 +70,8 @@ export class CreateUserDetailComponent {
   onPetTypeChange(data: string) {
     const pet = this.PetTypes.find(pet => pet.petTypeName === data);
     console.log(pet)
+
+    this.defaultPic = pet.defaultPetPic;
     
     this.userService.getRaceByPetTypeId(pet.id).subscribe({
       next: response => {
@@ -89,7 +94,7 @@ export class CreateUserDetailComponent {
     const petTypeNamesArray = _stringOptions.map(option => option.petTypeName);
 
     let petType: selectCustom = {
-      title: 'Select of pet type',
+      title: '',
       defaultValue: _defaultValue,
       stringOptions: petTypeNamesArray,
       currentValue: _currentValue,
@@ -103,7 +108,7 @@ export class CreateUserDetailComponent {
     const gendersArray = _stringOptions.map(option => option.genderName);
 
     let genders: selectCustom = {
-      title: 'Select gender',
+      title: '',
       defaultValue: _defaultValue,
       stringOptions: gendersArray,
       currentValue: _currentValue,
@@ -117,12 +122,20 @@ export class CreateUserDetailComponent {
     const racesArray = _stringOptions.map(option => option.raceName);
 
     let races: selectCustom = {
-      title: 'Select races',
+      title: '',
       defaultValue: _defaultValue,
       stringOptions: racesArray,
       currentValue: _currentValue,
       disabled: _disabled
     }
     this.RacesSelect = races;
+  }
+
+  openFileDialog() {
+    this.fileInput.nativeElement.click();
+  }
+  
+  onFileSelected(event) {
+    console.log(event.target.files[0]);
   }
 }
