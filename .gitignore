@@ -464,3 +464,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+FrontEndLS/src/app/pages/login/create-user/create-user-detail/create-user-detail.component.html
+BackEndLS/.vs/BackEndLS/v17/.futdcache.v1
