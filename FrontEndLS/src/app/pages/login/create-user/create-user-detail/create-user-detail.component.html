@@ -1,44 +1,39 @@
 <div class="container-user-detail">
-
+    <span class="title">Bienvenido user name</span>
     <div class="container-welcome">
-        <span>Bienvenido user name</span>
+        
         <div class="img-welcome">
-            <img src="../../../../../assets/img_default.png" alt="">
+            <img [src]="defaultPic" alt="">
+        </div>
+
+        <div class="selects-label container-load-pic">
+            <button class="button-white" (click)="openFileDialog()">Cambiar imagen</button>
+            <input type="file" #fileInput style="display:none;" (change)="onFileSelected($event)" accept=".jpg, .jpeg, .png">
         </div>
     </div>
 
     <div class="container-selects">
         <div class="selects-label container-type">
-            <span>Select of pet type</span>
-            <select [(ngModel)]="selectedPetTypeId" (ngModelChange)="onPetTypeChange2()" class="select select-pet-type">
-                <option>-</option>
-                <option *ngFor="let pet of PetTypes" [value]="pet.id">{{pet.petTypeName}}</option>
-            </select>
+            <span class="subtitle">Select of pet type</span>
+            <app-select-custom [options]="PetTypesSelect" (selected)="onPetTypeChange($event)" class="select-pet-type"></app-select-custom>
 
-            <app-select-custom [options]="PetTypesSelect" (selected)="onPetTypeChange($event)"></app-select-custom>
         </div>
         <div class="selects-label container-gender">
-            <span>Select gender</span>
-            <select [(ngModel)]="selectedGenderId" (ngModelChange)="onGenderChange()">
-                <option [value]="'-'">-</option>
-                <option *ngFor="let gender of Genders" [value]="gender.id">{{gender.genderName}}</option>
-            </select>
+
+            <span class="subtitle">Select gender</span>
+            <app-select-custom [options]="GendersSelect" (selected)="onGenderChange($event)" class="select-gender"></app-select-custom>
+        
         </div>
         <div class="selects-label container-race">
-            <span>Select race</span>
-            <select [(ngModel)]="selectedRaceId" (ngModelChange)="onRaceChange()">
-                <option [value]="'-'">-</option>
-                <option *ngFor="let race of Races" [value]="race.id">{{race.raceName}}</option>
-            </select>
+
+            <span class="subtitle">Select races</span>
+            <app-select-custom [options]="RacesSelect" (selected)="onRaceChange($event)" class="select-race"></app-select-custom>
         </div>
-        <div class="selects-label container-load-pic">
-            <span>Load a pic</span>
-            <input type="file" accept=".jpg, .jpeg, .png">
-        </div>
+        
     </div>
 
     <div class="container-button">
-        <button>Terminar registro</button>
+        <button class="button-blue">Terminar registro</button>
     </div>
     
 </div>
