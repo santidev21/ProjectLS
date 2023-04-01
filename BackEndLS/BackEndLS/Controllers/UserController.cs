@@ -20,79 +20,71 @@ namespace BackEndLS.Controllers
 
         [HttpPost("createUser")]
         public IActionResult CreateUser(Users users)
-        { 
-            try
+        {            
+            try {
+                Response<Users> response = _userServices.CreateUser(users);
+                return Ok(response);
+            } catch (Exception ex)
             {
-                string response = _userServices.CreateUser(users);
-                return Ok(new { message = response });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = "A system error has occurred, contact support." });
-            }
-            
+                Response<Users> response = new Response<Users>(false, "C- There was an error trying to create the user, please contact support.", users);
+                return BadRequest(response);
+            }            
         }
 
         [HttpGet("petTypes")]
         public IActionResult getPetTypes() 
-        {
-            Response<List<PetType>> response = new Response<List<PetType>>();
+        {            
             try
             {
-                response = _userServices.GetPetTypes();
+                Response<List<PetType>> response = _userServices.GetPetTypes();
                 return Ok(response);
             }
             catch (Exception ex)
             {
-
-                response.Success = false;
-                response.Message = ex.Message;
-                response.Value = null;
-
+                Response<List<PetType>> response = new Response<List<PetType>>(false, "C- There was an error trying to get the pet list, please contact support.", null);
                 return BadRequest(response);
             }
         }
         [HttpGet("race/{PetTypeId}")]
         public IActionResult getRaces(int PetTypeId)
-        {
-            Response<List<Race>> response = new Response<List<Race>>();
-
+        {            
             try
             {
-                response = _userServices.GetRaces(PetTypeId);
+                Response<List<Race>> response = _userServices.GetRaces(PetTypeId);
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while querying for the race, contact support." });
+                Response<List<Race>> response = new Response<List<Race>>(false, "C- There was an error trying to get the races, please contact support.", null);
+                return BadRequest(response);
             }
         }
         [HttpGet("gender")]
         public IActionResult getGenders()
-        {
-            Response<List<Gender>> response = new Response<List<Gender>>();
-
+        {            
             try
             {
-                response = _userServices.GetGenders();
+                Response<List<Gender>> response = _userServices.GetGenders();
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while querying for the gender list, contact support." });
+                Response<List<Gender>> response = new Response<List<Gender>>(false, "C- There was an error trying to get the genders, please contact support.", null);
+                return BadRequest(response);
             }
         }
         [HttpGet("userDetails/{userId}")]
         public IActionResult getUserDetails(int userId)
-        {
+        {            
             try
             {
-                List <UserDetails> response = _userServices.GetUserDetails(userId);
+                Response<List<UserDetails>> response = _userServices.GetUserDetails(userId);
                 return Ok(new { message = response });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while querying for the user details, contact support." });
+                Response<List<UserDetails>> response = new Response<List<UserDetails>>(false, "C- There was an error trying to get the user details, please contact support.", null);
+                return BadRequest(response);
             }
         }
         [HttpPost("userDetail")]
@@ -101,11 +93,12 @@ namespace BackEndLS.Controllers
             try
             {
                 Response<UserDetails> response = _userServices.SetUserDetail(Detail);
-                return Ok(new { message = response });
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while saving user detail, contact support." });
+                Response<UserDetails> response = new Response<UserDetails>(false, "C- There was an error trying to set the user details, please contact support.", null);
+                return BadRequest(response);
             }
         }
         [HttpGet("userProfilePic/{userId}")]
@@ -114,11 +107,12 @@ namespace BackEndLS.Controllers
             try
             {
                 Response<UserProfilePic> response = _userServices.GetUserProfilePic(userId);
-                return Ok(new { message = response });
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while saving user profile pic, contact support." });
+                Response<UserProfilePic> response = new Response<UserProfilePic>(false, "C- There was an error trying to get the user profile pic, please contact support.", null);
+                return BadRequest(response);
             }
         }
         [HttpPost("userProfilePic")]
@@ -127,11 +121,12 @@ namespace BackEndLS.Controllers
             try
             {
                 Response<UserProfilePic> response = _userServices.SetUserProfilePic(ProfilePic);
-                return Ok(new { message = response });
+                return Ok(new { message = response });               
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while saving user profile pic, contact support." });
+                Response<UserProfilePic> response = new Response<UserProfilePic>(false, "C- There was an error trying to set the user profile pic, please contact support.", null);
+                return BadRequest(response);
             }
         }
         [HttpPut("userProfilePic")]
@@ -144,7 +139,8 @@ namespace BackEndLS.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = "A system error occurred while updating user profile pic, contact support." });
+                Response<UserProfilePic> response = new Response<UserProfilePic>(false, "C- There was an error trying to update the user profile pic, please contact support.", null);
+                return BadRequest(response);
             }
         }
     }

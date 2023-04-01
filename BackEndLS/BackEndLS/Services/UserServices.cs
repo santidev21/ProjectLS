@@ -14,35 +14,53 @@ namespace BackEndLS.Services
             _userRepositories = userRepositories;
         }
 
-        public string CreateUser(Users users)
+        public Response<Users> CreateUser(Users users)
         {
-            bool isValidUser = ValidateUser(users.UserName);
-            bool isValidEmail = ValidateEmail(users.Email);
+            try
+            {
+                bool isValidUser = ValidateUser(users.UserName);
+                bool isValidEmail = ValidateEmail(users.Email);
 
-            if (isValidUser && isValidEmail)
-            {
-                users.Password = Encrypt.EncryptPassword(users.Password);
-                _userRepositories.CreateUser(users);
+                Response<Users> response = new Response<Users>();
 
-                return "Usuario agregado con éxito";
+                if (isValidUser && isValidEmail)
+                {
+                    users.Password = Encrypt.EncryptPassword(users.Password);
+                    response = _userRepositories.CreateUser(users);
+                }
+                else if (!isValidUser && !isValidEmail)
+                {
+                    response.Success = false;
+                    response.Value = null;
+                    response.Message = "The username and email entered are already in use";
+                }
+                else if (!isValidEmail)
+                {
+                    response.Success = false;
+                    response.Value = null;
+                    response.Message = "The email entered is already in use";
+                }
+                else if (!isValidUser)
+                {
+                    response.Success = false;
+                    response.Value = null;
+                    response.Message = "The entered user is already in use";
+                }
+                else
+                {
+                    response.Success = false;
+                    response.Value = null;
+                    response.Message = "Other validation error, please contact support.";
+                }
+                return response;
+
             }
-            else if (!isValidUser && !isValidEmail)
+            catch (Exception)
             {
-                return "El usuario y correo ingresados ya están en uso";
+                Response<Users> response = new Response<Users>(false, "S - There was an error trying to create the user, please contact support.", null);
+                return response;
             }
-            else if (!isValidEmail)
-            {
-                return "El correo ingresado ya está en uso";
-            }
-            else if (!isValidUser)
-            {
-                return "El usuario ingresado ya está en uso";
-            }
-     
-            else
-            {
-                return "";
-            }            
+
 
         }
 
@@ -65,10 +83,55 @@ namespace BackEndLS.Services
         public Response<List<PetType>> GetPetTypes() { return _userRepositories.GetPetTypes(); }
         public Response<List<Race>> GetRaces(int PetTypeId) { return _userRepositories.GetRaces(PetTypeId); }
         public Response<List<Gender>> GetGenders() { return _userRepositories.GetGenders(); }
-        public List<UserDetails> GetUserDetails(int userId) { return _userRepositories.GetUserDetails(userId); }
+        public Response<List<UserDetails>> GetUserDetails(int userId) { return _userRepositories.GetUserDetails(userId); }
         public Response<UserDetails> SetUserDetail(UserDetails Detail) { return _userRepositories.SetUserDetail(Detail);}
         public Response<UserProfilePic> GetUserProfilePic(int UserId) { return _userRepositories.GetUserProfilePic(UserId); }
-        public Response<UserProfilePic> SetUserProfilePic(UserProfilePic ProfilePic) { return _userRepositories.SetUserProfilePic(ProfilePic); }
-        public Response<UserProfilePic> updateProfilePic(UserProfilePic ProfilePic) { return _userRepositories.updateProfilePic(ProfilePic); }
+        public Response<UserProfilePic> SetUserProfilePic(UserProfilePic ProfilePic) 
+        {
+            try
+            {
+                Response<UserProfilePic> response = new Response<UserProfilePic>();
+                Response<UserProfilePic> userHasPic = _userRepositories.GetUserProfilePic(ProfilePic.UserId);
+                if (userHasPic.Value != null) 
+                {
+                    userHasPic.Value.Pic = ProfilePic.Pic;
+                    response = _userRepositories.updateProfilePic(userHasPic.Value);
+                } else
+                {
+                    response = _userRepositories.SetUserProfilePic(ProfilePic);
+                }
+                return response;
+            }
+            catch (Exception)
+            {
+                Response<UserProfilePic> response = new Response<UserProfilePic>(false, "S - There was an error trying to set the user profile pic, please contact support.", null);
+                return response;
+            }
+        }
+        public Response<UserProfilePic> updateProfilePic(UserProfilePic ProfilePic) 
+        {
+            try
+            {
+                Response<UserProfilePic> userHasPic = _userRepositories.GetUserProfilePic(ProfilePic.UserId);
+                if (userHasPic.Value != null)
+                {
+                    Response<UserProfilePic> response = new Response<UserProfilePic>();
+                    userHasPic.Value.Pic = ProfilePic.Pic;
+                    response = _userRepositories.updateProfilePic(userHasPic.Value);
+                    return response;
+                }
+                else
+                {
+                    Response<UserProfilePic> response = new Response<UserProfilePic>(false, "User does not exist", null);
+                    return response;
+                }
+            }
+            catch (Exception)
+            {
+                Response<UserProfilePic> response = new Response<UserProfilePic>(false, "S - There was an error trying to update the user profile pic, please contact support.", null);
+                return response;
+            }   
+
+        }
     }
 }

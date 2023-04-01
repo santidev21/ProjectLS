@@ -5,7 +5,7 @@ namespace BackEndLS.IRepositories
 {
     public interface IUserRepositories
     {
-        void CreateUser(Users users);
+        Response<Users> CreateUser(Users users);
         bool ValidateUser(string username);
 
         bool ValidateEmail(string email);
@@ -13,7 +13,7 @@ namespace BackEndLS.IRepositories
         Response<List<PetType>> GetPetTypes();
         Response<List<Race>> GetRaces(int PetTypeId);
         Response<List<Gender>> GetGenders();
-        List<UserDetails> GetUserDetails(int UserId);
+        Response<List<UserDetails>> GetUserDetails(int UserId);
         Response<UserDetails> SetUserDetail(UserDetails Detail);
         Response<UserProfilePic> GetUserProfilePic(int UserId);
         Response<UserProfilePic> SetUserProfilePic(UserProfilePic ProfilePic);
