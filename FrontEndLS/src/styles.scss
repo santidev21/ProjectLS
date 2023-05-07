@@ -71,6 +71,16 @@ body {
     cursor: pointer;
 }
 
+.button-disabled{
+    height: 35px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 20px;
+    color: black;
+}
+
+
 
 input[type="file"] {
   display: none;

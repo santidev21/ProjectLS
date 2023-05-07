@@ -1,3 +1,4 @@
+using Amazon.S3;
 using BackEndLS.IRepositories;
 using BackEndLS.IServices;
 using BackEndLS.Persistence.Context;
@@ -15,7 +16,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IAWSServices, AWSServices>();
+
 builder.Services.AddScoped<IUserRepositories, UserRepositories>();
+builder.Services.AddScoped<IAWSRepositories, AWSRepositories>();
+
+builder.Services.AddAWSService<IAmazonS3>();
 
 builder.Services.AddDbContext<LSContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Conexion")));
 
